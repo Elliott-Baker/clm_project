@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from dash import dcc, html
 
-df = pd.read_excel('C:/Users/ebake/Documents/stat_3600_project/companies.xlsx')
+df = pd.read_csv('https://raw.githubusercontent.com/Elliott-Baker/clm_project/master/datasets/companies.csv')
 fig = go.Figure(data=[go.Histogram(x=df['Percent Return'])])
 
 app = dash.Dash()
