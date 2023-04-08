@@ -3,7 +3,7 @@ from bs4 import SoupStrainer
 import requests
 import csv
 
-with open('companies.csv', 'w', newline='') as csvfile:
+with open('s&p500.csv', 'w', newline='') as csvfile:
     fieldnames = ['Company Name']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
