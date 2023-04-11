@@ -14,7 +14,7 @@ fig = go.Figure(data=[go.Histogram(x=df['Percent Change'],
                                    xbins=dict(
                                         start=-0.0566,
                                         end=0.0566,
-                                        size=0.01),
+                                        size=0.001),
                                      autobinx=False
                                      )])
                                    
