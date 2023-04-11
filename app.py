@@ -15,15 +15,22 @@ colors = {
 
 stock_frame = pd.read_csv(stocks_path, usecols=stocks_column_names)
 random_frame = pd.read_csv(random_returns_path, usecols=random_column_names)
-print(random_frame.head())
 
-fig = go.Figure(data=[go.Histogram(x=stock_frame['Percent Change'], 
+fig = go.Figure()
+fig.add_trace(go.Histogram(x=stock_frame['Percent Change'], 
                                    xbins=dict(
                                         start=-0.0566,
                                         end=0.0566,
                                         size=0.001),
                                      autobinx=False
-                                     )])
+                                     ))
+fig.add_trace(go.Histogram(x=random_frame['Percent Change'],
+                                    xbins=dict(
+                                        start=-0.06,
+                                        end=0.06,
+                                        size=0.001),
+                                    autobinx=False
+                                    ))
                                    
 fig.update_layout(
     title_text='Percent Change of S&P 500', # title of plot
