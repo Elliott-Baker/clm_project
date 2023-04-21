@@ -5,8 +5,6 @@ from dash import dcc, html
 
 stocks_path = 'https://raw.githubusercontent.com/Elliott-Baker/clm_project/master/datasets/s%26p500.csv'
 stocks_column_names = ['x', 'Percent Change', 'Company Name']
-random_returns_path = 'https://raw.githubusercontent.com/Elliott-Baker/clm_project/master/datasets/randomReturns.csv'
-random_column_names = ['x', 'Percent Change']
 
 colors = {
     'background': '#f5f5f5',
@@ -14,26 +12,10 @@ colors = {
 }
 
 stock_frame = pd.read_csv(stocks_path, usecols=stocks_column_names)
-random_frame = pd.read_csv(random_returns_path, usecols=random_column_names)
 
-fig = go.Figure()
-fig.add_trace(go.Histogram(x=stock_frame['Percent Change'], 
-                                   xbins=dict(
-                                        start=-0.0566,
-                                        end=0.0566,
-                                        size=0.001),
-                                     autobinx=False
-                                     ))
-fig.add_trace(go.Histogram(x=random_frame['Percent Change'],
-                                    xbins=dict(
-                                        start=-0.06,
-                                        end=0.06,
-                                        size=0.001),
-                                    autobinx=False
-                                    ))
+fig = go.Figure(go.Histogram(x=stock_frame['Percent Change'], xbins=dict(start=-0.0566, end=0.0566, size=0.001), autobinx=False))
                                    
 fig.update_layout(
-    title_text='Percent Change of S&P 500', # title of plot
     xaxis_title_text='Percent Change', # xaxis label
     yaxis_title_text='Count', # yaxis label
     plot_bgcolor=colors['background'], # plot background color
