@@ -25,6 +25,12 @@ fig.add_trace(trace2, row=1, col=1)
 # create histogram of percent change
 fig.add_trace(go.Histogram(x=stock_frame['Percent Change'], xbins=dict(start=-0.0566, end=0.0566, size=0.001), autobinx=False), row=1, col=2)
 
+# create normal curve to overlay on histogram
+mu, std = stats.norm.fit(stock_frame['Percent Change'])
+x = np.linspace(-0.06, 0.06, 1000)
+y = stats.norm.pdf(x, mu, std)*len(stock_frame)*0.001
+fig.add_trace(go.Scatter(x=x, y=y, mode='lines', name='Normal Curve'), row=1, col=2)
+
 # update qq plot axis properties
 fig.update_xaxes(title_text="Theoretical Quantiles", row=1, col=1)
 fig.update_yaxes(title_text="Sample Quantiles", row=1, col=1)
